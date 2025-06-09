@@ -1,1 +1,1 @@
-# Google A2A Protocol
+# Google's A2A Protocol
