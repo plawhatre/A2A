@@ -2,22 +2,27 @@
 
 ##### 1. Output: Hello World
 ```python
+-----------REQUEST-----------
 {
-    'id': 'dbf5a756-2468-4dfa-bf27-ca627f5c5866',
+    'id': '0b04aa0f-c07f-49bd-bcee-aa875b05871b',
     'jsonrpc': '2.0',
-    'result': {
-        'kind': 'message',
-        'messageId': '931b65f0-8ccb-42a4-940d-c6189bd2afbe',
-        'parts': [{'kind': 'text', 'text': 'Hello World'}],
-        'role': 'agent'
+    'method': 'message/send',
+    'params': {
+        'message': {
+            'kind': 'message',
+            'messageId': '8e730af8a55c470b858aa4701c0b7546',
+            'parts': [{'kind': 'text', 'text': 'How much is 10 USD in INR?'}],
+            'role': 'user'
+        }
     }
 }
+-----------RESPONSE-----------
 {
-    'id': 'f3777591-4fd8-480d-99ea-8a28fc47858c',
+    'id': '0b04aa0f-c07f-49bd-bcee-aa875b05871b',
     'jsonrpc': '2.0',
     'result': {
         'kind': 'message',
-        'messageId': '49711c53-cd7b-4666-9bb3-8deca5bffd77',
+        'messageId': 'a12e4675-f04a-4f56-9771-34c5a7c67238',
         'parts': [{'kind': 'text', 'text': 'Hello World'}],
         'role': 'agent'
     }
