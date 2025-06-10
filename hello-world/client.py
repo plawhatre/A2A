@@ -74,6 +74,9 @@ async def main():
             params=MessageSendParams(**payload)           
         )
         response = await client.send_message(request)
+        print(f"-----------REQUEST-----------") 
+        print( request.model_dump(mode='json', exclude_none=True))
+        print(f"-----------RESPONSE-----------") 
         print(response.model_dump(mode='json', exclude_none=True))
 
         # Step 5b: Streaming Request-Response
@@ -83,7 +86,8 @@ async def main():
         )
         streaming_response = client.send_message_streaming(streaming_request)
         async for chunk in streaming_response:
-            print(chunk.model_dump(mode='json', exclude_none=True))
+            print(f"-----------STREAMING RESPONSE-----------") 
+            print(response.model_dump(mode='json', exclude_none=True))
 
 if __name__ == "__main__":
     asyncio.run(main())
