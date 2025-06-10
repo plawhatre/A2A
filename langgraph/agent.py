@@ -1,4 +1,6 @@
 import httpx
+from pydantic import BaseModel
+from typing import Literal
 
 from langchain_core.tools import tool
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -44,6 +46,12 @@ def get_exchange_rate(
     except ValueError:
         return {'error': 'Invalid JSON response from API'}
 
+
+class ResponseFormat(BaseModel):
+    """Respond to the user in this format
+    """
+    status: Literal['input_required', 'complete', 'error'] = 'input_required'
+    message: str
 
 
 if __name__ == "__main__":
