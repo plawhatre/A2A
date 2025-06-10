@@ -13,7 +13,7 @@ from rich import print
 
 PUBLIC_AGENT_CARD_PATH = '/.well-known/agent.json'
 EXTENDED_AGENT_CARD_PATH = 'agent/authenticatedExtendedCard'
-BASE_URL = 'http://localhost:9999'
+BASE_URL = 'http://0.0.0.0:9999'
 
 async def main():
     async with httpx.AsyncClient() as httpx_client:
