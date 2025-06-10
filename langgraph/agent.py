@@ -21,6 +21,7 @@ SYSTEM_INSTRUCTIONS = (
     "Set the response status to complete if the request is complete."
 )
 MEMORY = MemorySaver()
+SUPPORTED_CONTENT_TYPES = ['text', 'text/plain']
 
 @tool
 def get_exchange_rate(
