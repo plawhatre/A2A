@@ -68,6 +68,7 @@ def main(host, port):
     except Exception as e:
         print("Error occured:")
         print(e)
+        
 if __name__ == "__main__":
     main()
 
