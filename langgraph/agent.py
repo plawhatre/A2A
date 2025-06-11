@@ -110,7 +110,7 @@ class CurrencyAgent:
                     'require_user_input': False,
                     'content': 'Processing the exchange rates...'
                 }
-            yield self.get_agent_response(config)
+        yield self.get_agent_response(config)
 
 
     def get_agent_response(self, config):
