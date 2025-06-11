@@ -114,8 +114,9 @@ class CurrencyAgent:
 
 
     def get_agent_response(self, config):
-        current_state = self.graph.get_current_state(config)
+        current_state = self.graph.get_state(config)
         structured_response = current_state.values.get('structured_response')
+        print(structured_response)
         if (
             structured_response
             and isinstance(structured_response, ResponseFormat)
