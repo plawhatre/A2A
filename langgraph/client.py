@@ -79,15 +79,15 @@ async def main():
         print(f"-----------RESPONSE-----------") 
         print(response.model_dump(mode='json', exclude_none=True))
 
-        # Step 5b: Streaming Request-Response
-        streaming_request = SendStreamingMessageRequest(
-            id=str(uuid.uuid4()),
-            params=MessageSendParams(**payload)           
-        )
-        streaming_response = client.send_message_streaming(streaming_request)
-        async for chunk in streaming_response:
-            print(f"-----------STREAMING RESPONSE-----------") 
-            print(response.model_dump(mode='json', exclude_none=True))
+        # # Step 5b: Streaming Request-Response
+        # streaming_request = SendStreamingMessageRequest(
+        #     id=str(uuid.uuid4()),
+        #     params=MessageSendParams(**payload)           
+        # )
+        # streaming_response = client.send_message_streaming(streaming_request)
+        # async for chunk in streaming_response:
+        #     print(f"-----------STREAMING RESPONSE-----------") 
+        #     print(response.model_dump(mode='json', exclude_none=True))
 
 if __name__ == "__main__":
     asyncio.run(main())
