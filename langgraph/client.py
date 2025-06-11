@@ -79,15 +79,46 @@ async def main():
         print(f"-----------RESPONSE-----------") 
         print(response.model_dump(mode='json', exclude_none=True))
 
-        # # Step 5b: Streaming Request-Response
-        # streaming_request = SendStreamingMessageRequest(
-        #     id=str(uuid.uuid4()),
-        #     params=MessageSendParams(**payload)           
-        # )
-        # streaming_response = client.send_message_streaming(streaming_request)
-        # async for chunk in streaming_response:
-        #     print(f"-----------STREAMING RESPONSE-----------") 
-        #     print(response.model_dump(mode='json', exclude_none=True))
+        # # Step 5b: Multiturn Request-Response
+        payload = {
+            "message": {
+                "role": "user",
+                "parts": [
+                    {"kind": "text", "text": "How much is 10 USD?"}
+                ],
+                "messageId": uuid.uuid4().hex
+            }
+        }
+        request = SendMessageRequest(
+            id=str(uuid.uuid4()),
+            params=MessageSendParams(**payload)           
+        )
+        response = await client.send_message(request)
+        print(f"-----------1st RESPONSE-----------") 
+        print(response.model_dump(mode='json', exclude_none=True))
+
+        taskId = response.root.result.id
+        contextId = response.root.result.contextId
+
+        payload = {
+            "message": {
+                "role": "user",
+                "parts": [
+                    {"kind": "text", "text": "JPY"}
+                ],
+                "messageId": uuid.uuid4().hex,
+                "taskId":taskId,
+                "contextId": contextId
+            }
+        }
+        request = SendMessageRequest(
+            id=str(uuid.uuid4()),
+            params=MessageSendParams(**payload)           
+        )
+        response = await client.send_message(request)
+        print(f"-----------2nd RESPONSE-----------") 
+        print(response.model_dump(mode='json', exclude_none=True))
+        
 
 if __name__ == "__main__":
     asyncio.run(main())
