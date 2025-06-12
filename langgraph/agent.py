@@ -98,7 +98,7 @@ class CurrencyAgent:
                 isinstance(message, AIMessage)
                 and message.tool_calls
                 and len(message.tool_calls) > 0
-            ): 
+            ):
                 yield {
                     'is_task_complete': False,
                     'require_user_input': False,
@@ -116,7 +116,6 @@ class CurrencyAgent:
     def get_agent_response(self, config):
         current_state = self.graph.get_state(config)
         structured_response = current_state.values.get('structured_response')
-        print(structured_response)
         if (
             structured_response
             and isinstance(structured_response, ResponseFormat)
