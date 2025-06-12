@@ -80,7 +80,7 @@ async def main():
         print(response.model_dump(mode='json', exclude_none=True))
 
         # # Step 5b: Multiturn Request-Response
-        payload = {
+        first_payload = {
             "message": {
                 "role": "user",
                 "parts": [
@@ -89,35 +89,35 @@ async def main():
                 "messageId": uuid.uuid4().hex
             }
         }
-        request = SendMessageRequest(
+        first_request = SendMessageRequest(
             id=str(uuid.uuid4()),
-            params=MessageSendParams(**payload)           
+            params=MessageSendParams(**first_payload)           
         )
-        response = await client.send_message(request)
+        first_response = await client.send_message(first_request)
         print(f"-----------1st RESPONSE-----------") 
-        print(response.model_dump(mode='json', exclude_none=True))
+        print(first_response.model_dump(mode='json', exclude_none=True))
 
-        taskId = response.root.result.id
-        contextId = response.root.result.contextId
+        taskId = first_response.root.result.id
+        contextId = first_response.root.result.contextId
 
-        payload = {
+        second_payload = {
             "message": {
                 "role": "user",
                 "parts": [
-                    {"kind": "text", "text": "JPY"}
+                    {"kind": "text", "text": "CAD"}
                 ],
                 "messageId": uuid.uuid4().hex,
                 "taskId":taskId,
                 "contextId": contextId
             }
         }
-        request = SendMessageRequest(
+        second_request = SendMessageRequest(
             id=str(uuid.uuid4()),
-            params=MessageSendParams(**payload)           
+            params=MessageSendParams(**second_payload)           
         )
-        response = await client.send_message(request)
+        second_response = await client.send_message(second_request)
         print(f"-----------2nd RESPONSE-----------") 
-        print(response.model_dump(mode='json', exclude_none=True))
+        print(second_response.model_dump(mode='json', exclude_none=True))
         
 
 if __name__ == "__main__":
