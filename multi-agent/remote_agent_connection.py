@@ -1,7 +1,8 @@
 import httpx
 import uuid
-
 from typing import Callable
+
+from a2a.client import A2AClient
 from a2a.types import (
     AgentCard,
     Task,
@@ -23,7 +24,7 @@ class RemoteAgentConenction:
     A class to hold connections to remote agents
     """
     def __init(self, client: httpx.AsyncClient, agent_card: AgentCard):
-        self.agent_client = client(client, agent_card)
+        self.agent_client = A2AClient(client, agent_card)
         self.card = agent_card
         self.pending_tasks = set()
 
