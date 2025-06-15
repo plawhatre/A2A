@@ -26,7 +26,7 @@ class RemoteAgentConenction:
     def __init(self, client: httpx.AsyncClient, agent_card: AgentCard):
         self.agent_client = A2AClient(client, agent_card)
         self.card = agent_card
-        self.pending_tasks = set()
+        self.pending_tasks = set() #Is this needed?
 
     def get_agent(self) -> AgentCard:
         return self.card
