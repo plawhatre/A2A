@@ -23,7 +23,7 @@ class RemoteAgentConenction:
     """
     A class to hold connections to remote agents
     """
-    def __init(self, client: httpx.AsyncClient, agent_card: AgentCard):
+    def __init__(self, client: httpx.AsyncClient, agent_card: AgentCard):
         self.agent_client = A2AClient(client, agent_card)
         self.card = agent_card
         self.pending_tasks = set() #Is this needed?
